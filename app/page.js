@@ -1,15 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '@/Components/Header'
 import Footer from '@/Components/Footer'
 
 // This is the About Us page.
 
 export const page = () => {
+  const [first, setfirst] = useState(second)
   return (
     <>
     <Header/>
-    <h1>About Us</h1>
-    <p>This is the About Us page.</p>
+
+    <form className='text-2xl text-black font-light  m-5 '>
+  <input type='text' placeholder='Add a new Note' />
+  <button className='bg-black m-5 px-2 py-.5 text-white text-2xl rounded'>Add</button>
+</form>
+
     <Footer/>
     </>
   )
