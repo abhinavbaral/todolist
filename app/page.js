@@ -7,12 +7,18 @@ import Footer from '@/Components/Footer'
 
 export const page = () => {
   const [first, setfirst] = useState("")
-  const [MTask, setMTask] = useState([])
+  const [MNote, setMNote] = useState([])
+  setMNote([...MNote, {first}])
   let handler = function(e){
     e.preventDefault ()
     setfirst("")
   }
   let show = <h2>No Notes</h2>
+  show= MNote.map(function (Note,index) {
+    return
+    <h5>{Note.first}</h5>
+    
+  })
   return (
     <>
     <Header/>
