@@ -1,53 +1,65 @@
-"use client"
-import React, { useState } from 'react'
-import Header from '@/Components/Header'
+"use client";
+import React, { useState } from "react";
+import Header from "@/Components/Header";
+import 'remixicon/fonts/remixicon.css';
 
 
-// This is the About Us page.
 
-export const Page = () => {
-  const [first, setFirst] = useState("")
+export const page = () => {
+  const [Inp, setInp] = useState("");
   const [MNote, setMNote] = useState([])
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (first.trim() !== "") {
-      setMNote([...MNote, { first }])
-      setFirst("")
+  let note = <h2>
+  Add a new Note
+    </h2>;
+    if(MNote. length>0) {
+      note = MNote.map((Note,index) =>{
+        return(
+          <li className="flex justify-between">
+                  <div className="flex items-center justify-between mb-5">
+          <h5 className="text-2xl font-semibold"> 
+           {Note.Inp}
+          </h5>
+        </div> 
+        <button className="bg-red-500 text-white  items-center justify-center text-center px-2 py-2 m-3 rounded">
+        <i class="ri-delete-bin-6-fill"></i>
+        </button>
+          </li>
+        )
+      })
+      
     }
+  
+  let Handle = function (e){
+     e.preventDefault()
+     setMNote([...MNote, {Inp}]);
+     setInp("")
   }
-
   return (
     <>
       <Header />
-      <form className='text-2xl text-black font-light m-5' onSubmit={handleSubmit}>
+      <form>
         <input
-          type='text'
-          placeholder='Add a new Note'
-          value={first}
-          onChange={(e) => setFirst(e.target.value)}
+          type="text"
+          className="border-2 border-black m-5 px-4 py-2"
+          placeholder="Enter your Note"
+          value={Inp}
+          onChange={function(e){
+             setInp(e.target.value)
+          }}
         />
-        <button className='bg-black m-5 px-2 py-0.5 text-white text-2xl rounded' type='submit'>
-          Add
+        <button onClick={Handle} className="bg-green-500 text-white  items-center justify-center text-center px-4 py-2 m-5 rounded">
+        <i class="ri-add-line"></i>
         </button>
       </form>
-      <hr />
-      <div className='p-8 bg-slate-200'>
+      <hr/>    
+      <div className="p-8 bg-gray-200">
         <ul>
-          {MNote.length === 0 ? (
-            <h2>No Notes</h2>
-          ) : (
-            MNote.map((note, index) => (
-              <li key={index}>
-                <h5>{note.first}</h5>
-              </li>
-            ))
-          )}
-        </ul>
-      </div>
-  
-    </>
-  )
-}
+            {note}
 
-export default Page
+        </ul>
+        </div>
+    </>
+  );
+};
+export default page;
